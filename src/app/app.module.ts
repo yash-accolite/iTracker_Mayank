@@ -1,18 +1,63 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
+import {RouterModule} from '@angular/router';
+import {LoginComponent} from './login/login.component';
+import {MainPageComponent} from './main-page/main-page.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatCardModule} from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatButtonModule} from '@angular/material/button';
+import { MatGridListModule } from '@angular/material/grid-list';
+import {MatInputModule} from '@angular/material/input';
+import {GoogleLoginProvider, SocialLoginModule} from 'angularx-social-login';
+import {AuthGuardService} from './auth-guard.service';
+import { MatIconModule } from '@angular/material/icon';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    MainPageComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    RouterModule.forRoot([
+      {path: 'login', component: LoginComponent,canActivate: [AuthGuardService]},
+      {path: 'profile', component: ProfileComponent,canActivate: [AuthGuardService]},
+      {path: 'mainpage', component: MainPageComponent, canActivate: [AuthGuardService]},
+      {path: '**', component: LoginComponent,canActivate: [AuthGuardService]}
+    ]),
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatToolbarModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatIconModule,
+    FlexLayoutModule,
+    MatInputModule,
+    MatGridListModule,
+    SocialLoginModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [{
+    provide: 'SocialAuthServiceConfig',
+    useValue: {
+      autoLogin: false,
+      providers: [
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+          provider: new GoogleLoginProvider('408208327082-imjvt8rs6b5qt3o1cqsp9ircne2j5pgb.apps.googleusercontent.com'),
+         }
+      ]
+    }
+  },
+    AuthGuardService],
+  bootstrap: [AppComponent,LoginComponent,ProfileComponent,MainPageComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

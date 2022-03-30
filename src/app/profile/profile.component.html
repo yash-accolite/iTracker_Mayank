@@ -1,0 +1,19 @@
+<div *ngIf="socialAuthService.authState | async as user">
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <img src="{{ user.photoUrl }}" />
+  </div>
+  <div class="login-wrapper" fxLayoutAlign="center center">
+    <p>
+      ID: {{ user.id }}<br />
+      Name: {{ user.name }}<br />
+      Email ID: {{ user.email }}<br />
+      firstName: {{ user.firstName }}<br />
+      lastName: {{ user.lastName }}<br />
+      provider: {{ user.provider }}<br />
+      response: {{ user.response }}<br />
+      AuthToken: {{ user.authToken }}<br />
+    </p>
+    <br />
+  </div>
+  <button mat-raised-button (click)="logout()">Logout</button>
+</div>

@@ -117,6 +117,20 @@ export class AddslotsComponent {
       "slotDate",
       new FormControl(this.formatDateToString(this.slotDate))
     );
+    console.log('TIME SLOTS RANGE ', this.timeCheck());
     console.log("FORM DATA", this.formData.getRawValue());
   }
+
+  //time slots validation
+  timeCheck(): string | null {
+    const [fromHr, fromMin] = this.formData.get('fromTimeSlot')?.value.split(":").map(Number);
+    const [toHr, toMin] = this.formData.get('toTimeSlot')?.value.split(":").map(Number);
+    
+    if (fromHr > toHr || (fromHr == toHr && fromMin > toMin)){
+      return 'INVALID';
+    } else {
+      return 'VALID';
+    }
+    return null;
+  } 
 }

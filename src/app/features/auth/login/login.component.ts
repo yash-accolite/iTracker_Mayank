@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 import { GoogleLoginProvider, SocialAuthService } from "angularx-social-login";
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-login2',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })

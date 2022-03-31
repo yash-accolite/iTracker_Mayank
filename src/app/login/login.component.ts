@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit} from "@angular/core";
 import {
   GoogleLoginProvider,
   SocialAuthService,
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
       this.loggedIn = user != null;
     });
   }
-
+  loginWithGoogle2() {}
   loginWithGoogle(): void {
     this.socialAuthService
       .signIn(GoogleLoginProvider.PROVIDER_ID)

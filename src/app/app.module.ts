@@ -1,6 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
 import {AppComponent} from './app.component';
 import {RouterModule} from '@angular/router';
 import {LoginComponent} from './login/login.component';
@@ -18,6 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProfileComponent } from './profile/profile.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +28,7 @@ import { ProfileComponent } from './profile/profile.component';
   imports: [
     BrowserModule,
     RouterModule.forRoot([
-      {path: 'login', component: LoginComponent,canActivate: [AuthGuardService]},
+      {path: 'login', component: LoginComponent},
       {path: 'profile', component: ProfileComponent,canActivate: [AuthGuardService]},
       {path: 'mainpage', component: MainPageComponent, canActivate: [AuthGuardService]},
       {path: '**', component: LoginComponent,canActivate: [AuthGuardService]}
@@ -42,16 +42,16 @@ import { ProfileComponent } from './profile/profile.component';
     FlexLayoutModule,
     MatInputModule,
     MatGridListModule,
-    SocialLoginModule
+    SocialLoginModule,
   ],
   providers: [{
     provide: 'SocialAuthServiceConfig',
     useValue: {
-      autoLogin: false,
+      autoLogin: true,
       providers: [
         {
           id: GoogleLoginProvider.PROVIDER_ID,
-          provider: new GoogleLoginProvider('408208327082-imjvt8rs6b5qt3o1cqsp9ircne2j5pgb.apps.googleusercontent.com'),
+          provider: new GoogleLoginProvider('408208327082-571vttplk0c4fq06n7i6023kikjj65p5.apps.googleusercontent.com'),
          }
       ]
     }

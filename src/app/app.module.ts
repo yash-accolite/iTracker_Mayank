@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {RouterModule} from '@angular/router';
 import {LoginComponent} from './login/login.component';
@@ -16,6 +16,12 @@ import {AuthGuardService} from './auth-guard.service';
 import { MatIconModule } from '@angular/material/icon';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProfileComponent } from './profile/profile.component';
+import { ProfileService } from './profile.service';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app-routing.module';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 @NgModule({
@@ -29,18 +35,32 @@ import { ProfileComponent } from './profile/profile.component';
     BrowserModule,
     RouterModule.forRoot([
       {path: 'login', component: LoginComponent},
-      {path: 'profile', component: ProfileComponent,canActivate: [AuthGuardService]},
-      {path: 'mainpage', component: MainPageComponent, canActivate: [AuthGuardService]},
-      {path: '**', component: LoginComponent,canActivate: [AuthGuardService]}
+      {path: 'profile', component: MainPageComponent},
+      {path: 'mainpage', component: MainPageComponent, canActivate: [AuthGuardService]}
     ]),
     BrowserAnimationsModule,
     MatCardModule,
     MatToolbarModule,
+    BrowserModule,
+    AppRoutingModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatInputModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatMenuModule,
+ 
+    MatCardModule,
+    ModalModule.forRoot(),
+    HttpClientModule,
     MatFormFieldModule,
     MatButtonModule,
     MatIconModule,
     FlexLayoutModule,
-    MatInputModule,
+   
+   
+
     MatGridListModule,
     SocialLoginModule,
   ],
@@ -56,8 +76,9 @@ import { ProfileComponent } from './profile/profile.component';
       ]
     }
   },
-    AuthGuardService],
-  bootstrap: [AppComponent,LoginComponent,ProfileComponent,MainPageComponent]
+    AuthGuardService,ProfileService],
+  bootstrap: [AppComponent,LoginComponent,ProfileComponent,MainPageComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {
 }

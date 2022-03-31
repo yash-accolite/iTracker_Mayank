@@ -9,7 +9,7 @@ import { Router } from "@angular/router";
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.css"],
+  styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent implements OnInit {
   user: SocialUser;
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
       this.loggedIn = user != null;
     });
   }
-  loginWithGoogle2() {}
+ 
   loginWithGoogle(): void {
     this.socialAuthService
       .signIn(GoogleLoginProvider.PROVIDER_ID)

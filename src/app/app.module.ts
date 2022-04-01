@@ -35,7 +35,7 @@ import {MatMenuModule} from '@angular/material/menu';
     BrowserModule,
     RouterModule.forRoot([
       {path: 'login', component: LoginComponent},
-      {path: 'profile', component: MainPageComponent},
+      {path: 'profile', component: MainPageComponent, canActivate: [AuthGuardService]},
       {path: 'mainpage', component: MainPageComponent, canActivate: [AuthGuardService]}
     ]),
     BrowserAnimationsModule,
@@ -67,7 +67,7 @@ import {MatMenuModule} from '@angular/material/menu';
   providers: [{
     provide: 'SocialAuthServiceConfig',
     useValue: {
-      autoLogin: true,
+      autoLogin: false,
       providers: [
         {
           id: GoogleLoginProvider.PROVIDER_ID,

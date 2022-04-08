@@ -1,3 +1,4 @@
+
 import {BrowserModule} from '@angular/platform-browser';
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
@@ -23,6 +24,11 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import {MatMenuModule} from '@angular/material/menu';
 
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { PanelistModule } from './features/panelist/panelist.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -63,6 +69,10 @@ import {MatMenuModule} from '@angular/material/menu';
 
     MatGridListModule,
     SocialLoginModule,
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
+    PanelistModule
   ],
   providers: [{
     provide: 'SocialAuthServiceConfig',

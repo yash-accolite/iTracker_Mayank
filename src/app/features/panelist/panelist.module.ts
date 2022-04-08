@@ -1,12 +1,14 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
 
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
+import { AddslotsComponent } from "./addslots/addslots.component";
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
-  ]
+  declarations: [AddslotsComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, NgbModule],
+  exports: [AddslotsComponent],
 })
-export class PanelistModule { }
+export class PanelistModule {}

@@ -1,0 +1,15 @@
+[
+  {
+    "name": "Diksha",
+    "role": "Panelist",
+    "location": "Bengaluru, Karnataka, India, (APAC)",
+    "empId": "INT950",
+    "contact_no": "9090909090",
+    "experience": "00 Y 02 M 11 D",
+    "email": "abcd@example.com",
+    "gender": "Male",
+    "round": "R1",
+    "total_interviews_taken": "44",
+    "total_candidates_selected": "35"
+  }
+]

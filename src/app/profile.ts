@@ -1,14 +1,15 @@
 export interface IProfile{
     name: string,
-    empId: any;
-    role: string,
+    //empId: any;
+    //userRole: { userId: string, role: string },
     location: string,
     email:string,
-    experience:any,
-    contact_no:any,
-    round:string,
+    exp:any,
+    contactNo:any,
+    //round:string,
     gender:string,
-    total_interviews_taken:any,
-    total_candidates_selected:any
+    //total_interviews_taken:any,
+    //total_candidates_selected:any
 
+ 
 }

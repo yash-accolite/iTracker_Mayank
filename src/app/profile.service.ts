@@ -7,7 +7,9 @@ import { IProfile } from "./profile";
 
  export class ProfileService
 {
-    private _url: string = "/assets/dummy-data/profile.json";
+   private _url: string = "./assets/dummy-data/profile.json";
+   //private _url: string = "http://ec2-3-111-33-68.ap-south-1.compute.amazonaws.com:8080/users";
+
     constructor(private http: HttpClient){}
 
 

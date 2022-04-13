@@ -1,5 +1,4 @@
 <!-- <div *ngIf="socialAuthService.authState | async as user">
-
   <div fxLayout="row" fxLayoutAlign="center center">
     <img src="{{ user.photoUrl }}" />
   </div>
@@ -18,6 +17,7 @@
   </div>
   <button mat-raised-button (click)="logout()">Logout</button>
 </div> -->
+
 <div *ngIf="socialAuthService.authState | async as socialUser">
   <div class="profile-container">
     <div class="outer-container">
@@ -32,9 +32,9 @@
             <div class="bio">
               <h1 class="name">{{ socialUser.firstName }}</h1>
 
-              <!-- <h3 class="left-profile-info">{{ profile[0].role }}</h3> -->
+              <h3 class="left-profile-info">{{ profile[0].userRole.role }}</h3>
               <h3 class="left-profile-info">{{ profile[0].location }}</h3>
-              <!-- <h3 class="left-profile-info">{{ profile[0].empId }}</h3> -->
+              <h3 class="left-profile-info">{{ profile[0].empId }}</h3>
             </div>
           </div>
           <!-- End of profile card -->
@@ -72,7 +72,7 @@
                 </div>
                 <div class="about-information">
                   <div class="about-info-title">Employee Id</div>
-                  <!-- <div class="about-info-text">{{ profile[0].empId }}</div> -->
+                  <div class="about-info-text">{{ profile[0].empId }}</div>
                 </div>
                 <div class="about-information">
                   <div class="about-info-title">Gender</div>
@@ -80,7 +80,7 @@
                 </div>
                 <div class="about-information">
                   <div class="about-info-title">Contact No.</div>
-                   <div class="about-info-text">{{ profile[0].contactNo }}</div>
+                  <div class="about-info-text">{{ profile[0].contactNo }}</div>
                 </div>
                 <div class="about-information">
                   <div class="about-info-title">Location</div>
@@ -98,7 +98,9 @@
                 </div>
                 <div class="about-information">
                   <div class="about-info-title">Round</div>
-                  <!-- <div class="about-info-text">{{ profile[0].round }}</div> -->
+                  <div class="about-info-text">
+                    {{ profile[0].userRole.role }}
+                  </div>
                 </div>
               </div>
             </div>
@@ -132,19 +134,19 @@
                   <li>
                     <div class="list-title">
                       {{ form.primary_skill }}
+
                       <button
                         type="button"
                         class="edit-btn"
                         (click)="openModal(template)"
                       >
-                        Edit
+                        <mat-icon>create</mat-icon>
                       </button>
 
                       <ng-template #template>
+                        <!-- <div class="modal-content"> -->
                         <div class="modal-header">
-                          <h4 class="modal-title pull-left">
-                            Add Primary Skill
-                          </h4>
+                          <h4 class="modal-title pull-left">Update Skills</h4>
                           <button
                             type="button"
                             class="btn-close close pull-right"
@@ -173,48 +175,7 @@
                                 placeholder="Ex. Python"
                               />
                             </mat-form-field>
-                            <button
-                              mat-raised-button
-                              (click)="updatePrimarySkill()"
-                            >
-                              Submit
-                            </button>
-                          </form>
-                        </div>
-                      </ng-template>
-                    </div>
-                    <div class="list-content">Primary Skill</div>
-                  </li>
-
-                  <li>
-                    <div class="list-title">
-                      {{ form.secondary_skill }}
-                      <button
-                        type="button"
-                        class="edit-btn"
-                        (click)="openModal(template1)"
-                      >
-                        Edit
-                      </button>
-
-                      <ng-template #template1>
-                        <div class="modal-header">
-                          <h4 class="modal-title pull-left">
-                            Add Secondary Skill
-                          </h4>
-                          <button
-                            type="button"
-                            class="btn-close close pull-right"
-                            aria-label="Close"
-                            (click)="modalRef?.hide()"
-                          >
-                            <span aria-hidden="true" class="visually-hidden"
-                              >&times;</span
-                            >
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <form class="example-form">
+                            <br />
                             <mat-form-field
                               class="example-full-width"
                               appearance="fill"
@@ -226,51 +187,11 @@
                                 class="form-control"
                                 [(ngModel)]="form.secondary_skill"
                                 required
-                                #secondary_skill="ngModel"
+                                #primary_skill="ngModel"
                                 placeholder="Ex. Python"
                               />
                             </mat-form-field>
-                            <button
-                              mat-raised-button
-                              (click)="updateSecondarySkill()"
-                            >
-                              Submit
-                            </button>
-                          </form>
-                        </div>
-                      </ng-template>
-                    </div>
-                    <div class="list-content">Seondary Skill</div>
-                  </li>
-                  <li>
-                    <div class="list-title">
-                      {{ form.tertiary_skill }}
-                      <button
-                        type="button"
-                        class="edit-btn"
-                        (click)="openModal(template2)"
-                      >
-                        Edit
-                      </button>
-
-                      <ng-template #template2>
-                        <div class="modal-header">
-                          <h4 class="modal-title pull-left">
-                            Add Tertiary Skill
-                          </h4>
-                          <button
-                            type="button"
-                            class="btn-close close pull-right"
-                            aria-label="Close"
-                            (click)="modalRef?.hide()"
-                          >
-                            <span aria-hidden="true" class="visually-hidden"
-                              >&times;</span
-                            >
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <form class="example-form">
+                            <br />
                             <mat-form-field
                               class="example-full-width"
                               appearance="fill"
@@ -282,25 +203,41 @@
                                 class="form-control"
                                 [(ngModel)]="form.tertiary_skill"
                                 required
-                                #tertiary_skill="ngModel"
+                                #primary_skill="ngModel"
                                 placeholder="Ex. Python"
                               />
                             </mat-form-field>
+                            <br />
                             <button
                               mat-raised-button
-                              (click)="updateTertiarySkill()"
+                              (click)="updateSkill()"
+                              class="submit-btn"
                             >
                               Submit
                             </button>
                           </form>
                         </div>
+                        <!-- </div> -->
                       </ng-template>
+                    </div>
+                    <div class="list-content">Primary Skill</div>
+                  </li>
+
+                  <li>
+                    <div class="list-title">
+                      {{ form.secondary_skill }}
+                    </div>
+                    <div class="list-content">Secondary Skill</div>
+                  </li>
+                  <li>
+                    <div class="list-title">
+                      {{ form.tertiary_skill }}
                     </div>
                     <div class="list-content">Tertiary Skill</div>
                   </li>
                 </ul>
               </div>
-              <div class="about-information">
+              <div class="about-information-interview">
                 <div class="skill-tab">
                   <div class="skills-icon-section">
                     <span class="icon-color">
@@ -329,15 +266,15 @@
                   <ul class="lists">
                     <li>
                       <div class="list-title">
-                        <!-- {{ profile[0].total_interviews_taken }} -->
+                        {{ profile[0].total_interviews_taken }}
                       </div>
                       <div class="list-content">Total Interviews Taken</div>
                     </li>
                     <li>
                       <div class="list-title">
-                        <!-- {{ profile[0].total_candidates_selected }}-->
-                      </div> 
-                      <div class="list-content">Total Candidates Selecetd</div>
+                        {{ profile[0].total_candidates_selected }}
+                      </div>
+                      <div class="list-content">Total Candidates Selected</div>
                     </li>
                   </ul>
                 </div>

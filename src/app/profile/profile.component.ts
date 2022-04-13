@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef } from "@angular/core";
-import { SocialAuthService } from "angularx-social-login";
+import { SocialAuthService, SocialUser } from "angularx-social-login";
 import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 import { Router } from "@angular/router";
 
@@ -19,6 +19,7 @@ export class ProfileComponent implements OnInit {
     private _profileServive: ProfileService
   ) {}
 
+  
   form: any = {
     primary_skill: "Java",
     secondary_skill: "React",
@@ -27,25 +28,35 @@ export class ProfileComponent implements OnInit {
 
   public profile: IProfile[] = [];
   modalRef?: BsModalRef;
+  public user: SocialUser;
+  loggedIn: boolean;
+  email:string="sumit.paul@accolitedigital.com"
 
   ngOnInit() {
+    this.socialAuthService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = user != null;
+    });
     this._profileServive
-      .getProfileInfo()
-      .subscribe((data) => (this.profile = data));
+      //.getProfileInfo(this.user.email)
+      .getProfileInfo(this.email)
+      .subscribe((response: IProfile[]) => (this.profile = response));
   }
 
   openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
+    this.modalRef = this.modalService.show(template,{ class: 'modal-sm' });
+    
   }
-  updatePrimarySkill() {
-    alert("You have updated Primary Skill to: " + this.form.primary_skill);
+  
+  updateSkill() {
+    alert("You have updated the Skill");
   }
-  updateSecondarySkill() {
-    alert("You have updated Secondary Skill to: " + this.form.secondary_skill);
-  }
-  updateTertiarySkill() {
-    alert("You have updated Tertiary Skill to: " + this.form.tertiary_skill);
-  }
+  // updateSecondarySkill() {
+  //   alert("You have updated Secondary Skill to: " + this.form.secondary_skill);
+  // }
+  // updateTertiarySkill() {
+  //   alert("You have updated Tertiary Skill to: " + this.form.tertiary_skill);
+  // }
   logout(): void {
     this.socialAuthService
       .signOut()

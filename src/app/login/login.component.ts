@@ -12,8 +12,9 @@ import { Router } from "@angular/router";
   styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent implements OnInit {
-  user: SocialUser;
+  public user: SocialUser;
   loggedIn: boolean;
+
 
   constructor(
     private router: Router,

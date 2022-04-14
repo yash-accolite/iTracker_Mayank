@@ -1,8 +1,10 @@
-{
-    "userRole":{
-        "userId":6,
-        "role":"Recruiter"
+[
+  {
+    "userRole": {
+      "userId": 3,
+      "role": "Recruiter"
     },
-    "skill":"java",
-    "round":3
-}
+    "skill": "scala",
+    "round": 2
+  }
+]

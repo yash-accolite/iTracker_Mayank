@@ -5,6 +5,7 @@ import { Router } from "@angular/router";
 
 import { ProfileService } from "../profile.service";
 import { IProfile } from "../profile";
+import { ISkill } from "../skill";
 
 @Component({
   selector: "app-profile",
@@ -19,7 +20,6 @@ export class ProfileComponent implements OnInit {
     private _profileServive: ProfileService
   ) {}
 
-  
   form: any = {
     primary_skill: "Java",
     secondary_skill: "React",
@@ -27,10 +27,10 @@ export class ProfileComponent implements OnInit {
   };
 
   public profile: IProfile;
+  public ISkills: ISkill;
   modalRef?: BsModalRef;
   public user: SocialUser;
   loggedIn: boolean;
-  email:string="rutvik.alandikar@accolitedigital.com"
 
   ngOnInit() {
     this.socialAuthService.authState.subscribe((user) => {
@@ -38,25 +38,26 @@ export class ProfileComponent implements OnInit {
       this.loggedIn = user != null;
     });
     this._profileServive
-      //.getProfileInfo(this.user.email)
+
       .getProfileInfo(this.user.email)
       .subscribe((response: IProfile) => (this.profile = response));
+    this._profileServive
+
+      .getSkillInfo(6)
+      .subscribe((response: ISkill) => (this.ISkills = response));
+    alert(this.ISkills);
   }
 
   openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template,{ class: 'modal-sm' });
-    
+    this.modalRef = this.modalService.show(template, { class: "modal-sm" });
   }
-  
+
   updateSkill() {
     alert("You have updated the Skill");
+
+    this._profileServive.putPrimarySkillInfo();
   }
-  // updateSecondarySkill() {
-  //   alert("You have updated Secondary Skill to: " + this.form.secondary_skill);
-  // }
-  // updateTertiarySkill() {
-  //   alert("You have updated Tertiary Skill to: " + this.form.tertiary_skill);
-  // }
+
   logout(): void {
     this.socialAuthService
       .signOut()

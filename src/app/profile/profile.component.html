@@ -32,9 +32,9 @@
             <div class="bio">
               <h1 class="name">{{ socialUser.firstName }}</h1>
 
-              <h3 class="left-profile-info">{{ profile[0].userRole.role }}</h3>
-              <h3 class="left-profile-info">{{ profile[0].location }}</h3>
-              <h3 class="left-profile-info">{{ profile[0].empId }}</h3>
+              <h3 class="left-profile-info">{{ profile.userRole.role }}</h3>
+              <h3 class="left-profile-info">{{ profile.location }}</h3>
+              <h3 class="left-profile-info">{{ profile.empId }}</h3>
             </div>
           </div>
           <!-- End of profile card -->
@@ -72,23 +72,23 @@
                 </div>
                 <div class="about-information">
                   <div class="about-info-title">Employee Id</div>
-                  <div class="about-info-text">{{ profile[0].empId }}</div>
+                  <div class="about-info-text">{{ profile.empId }}</div>
                 </div>
                 <div class="about-information">
                   <div class="about-info-title">Gender</div>
-                  <div class="about-info-text">{{ profile[0].gender }}</div>
+                  <div class="about-info-text">{{ profile.gender }}</div>
                 </div>
                 <div class="about-information">
                   <div class="about-info-title">Contact No.</div>
-                  <div class="about-info-text">{{ profile[0].contactNo }}</div>
+                  <div class="about-info-text">{{ profile.contactNo }}</div>
                 </div>
                 <div class="about-information">
                   <div class="about-info-title">Location</div>
-                  <div class="about-info-text">{{ profile[0].location }}</div>
+                  <div class="about-info-text">{{ profile.location }}</div>
                 </div>
                 <div class="about-information">
                   <div class="about-info-title">Experience</div>
-                  <div class="about-info-text">{{ profile[0].exp }}</div>
+                  <div class="about-info-text">{{ profile.exp }}</div>
                 </div>
                 <div class="about-information">
                   <div class="about-info-title">Email</div>
@@ -97,9 +97,9 @@
                   </div>
                 </div>
                 <div class="about-information">
-                  <div class="about-info-title">Round</div>
+                  <div class="about-info-title">Role</div>
                   <div class="about-info-text">
-                    {{ profile[0].userRole.role }}
+                    {{ profile.userRole.role }}
                   </div>
                 </div>
               </div>
@@ -266,13 +266,13 @@
                   <ul class="lists">
                     <li>
                       <div class="list-title">
-                        {{ profile[0].total_interviews_taken }}
+                        {{ profile.total_interviews_taken }}
                       </div>
                       <div class="list-content">Total Interviews Taken</div>
                     </li>
                     <li>
                       <div class="list-title">
-                        {{ profile[0].total_candidates_selected }}
+                        {{ profile.total_candidates_selected }}
                       </div>
                       <div class="list-content">Total Candidates Selected</div>
                     </li>

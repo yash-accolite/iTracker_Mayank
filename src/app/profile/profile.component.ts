@@ -26,11 +26,11 @@ export class ProfileComponent implements OnInit {
     tertiary_skill: "JavaScript",
   };
 
-  public profile: IProfile[] = [];
+  public profile: IProfile;
   modalRef?: BsModalRef;
   public user: SocialUser;
   loggedIn: boolean;
-  email:string="sumit.paul@accolitedigital.com"
+  email:string="rutvik.alandikar@accolitedigital.com"
 
   ngOnInit() {
     this.socialAuthService.authState.subscribe((user) => {
@@ -39,8 +39,8 @@ export class ProfileComponent implements OnInit {
     });
     this._profileServive
       //.getProfileInfo(this.user.email)
-      .getProfileInfo(this.email)
-      .subscribe((response: IProfile[]) => (this.profile = response));
+      .getProfileInfo(this.user.email)
+      .subscribe((response: IProfile) => (this.profile = response));
   }
 
   openModal(template: TemplateRef<any>) {
